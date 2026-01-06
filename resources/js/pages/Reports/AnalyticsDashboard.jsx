@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { mockAnalytics } from '@/lib/mockData';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
+import api from '@/lib/api';
 
 export default function AnalyticsDashboard() {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchAnalytics = async () => {
+            try {
+                const response = await api.get('/api/analytics');
+                setData(response.data);
+            } catch (error) {
+                console.error('Failed to fetch analytics:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchAnalytics();
+    }, []);
+
+    if (loading) return <div className="p-8 text-center text-gray-500">Loading reports...</div>;
+
     return (
         <div className="space-y-6">
-            <h1 className="text-2xl font-bold text-gray-900">Comprehensive Reports</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Comprehensive Reports</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Population Chart */}
@@ -19,7 +38,7 @@ export default function AnalyticsDashboard() {
                             <ResponsiveContainer width="100%" height="100%">
                                 <PieChart>
                                     <Pie
-                                        data={mockAnalytics.population}
+                                        data={data.population}
                                         cx="50%"
                                         cy="50%"
                                         innerRadius={60}
@@ -27,7 +46,7 @@ export default function AnalyticsDashboard() {
                                         paddingAngle={5}
                                         dataKey="value"
                                     >
-                                        {mockAnalytics.population.map((entry, index) => (
+                                        {data.population.map((entry, index) => (
                                             <Cell key={`cell-${index}`} fill={entry.fill} />
                                         ))}
                                     </Pie>
@@ -47,7 +66,7 @@ export default function AnalyticsDashboard() {
                     <CardContent>
                         <div className="h-[300px]">
                             <ResponsiveContainer width="100%" height="100%">
-                                <BarChart data={mockAnalytics.efficiency} layout="vertical">
+                                <BarChart data={data.efficiency} layout="vertical">
                                     <CartesianGrid strokeDasharray="3 3" horizontal={false} />
                                     <XAxis type="number" />
                                     <YAxis dataKey="name" type="category" width={100} />
@@ -58,7 +77,7 @@ export default function AnalyticsDashboard() {
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
-                        <div className="mt-4 text-center text-sm text-gray-600">
+                        <div className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
                             Digital processing is on average <span className="font-bold text-green-600">67% faster</span> than manual methods.
                         </div>
                     </CardContent>

@@ -48,4 +48,43 @@ class AdoptionController extends Controller
 
         return response()->json($adoption);
     }
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'cat_id' => 'required|exists:cats,id',
+            'applicant_name' => 'required|string',
+            'email' => 'required|email',
+            'phone' => 'required|string',
+            'address' => 'required|string',
+            'housing_type' => 'required|string',
+            'has_pets' => 'boolean',
+            'reason' => 'required|string',
+        ]);
+
+        $adoption = Adoption::create([
+            ...$validated,
+            'user_id' => $request->user() ? $request->user()->id : null,
+            'application_date' => now(),
+            'status' => 'New Application',
+            'stage' => 1,
+            'match_score' => rand(70, 99), // Mock score for now
+        ]);
+
+        return response()->json($adoption, 201);
+    }
+
+    public function getUserAdoptions(Request $request)
+    {
+        $user = $request->user();
+        if (!$user) {
+            return response()->json([], 401);
+        }
+
+        $adoptions = Adoption::where('user_id', $user->id)
+            ->with('cat')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json($adoptions);
+    }
 }

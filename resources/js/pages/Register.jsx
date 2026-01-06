@@ -3,18 +3,36 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
+import api from '@/lib/api';
 
 export default function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordConfirmation, setPasswordConfirmation] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Placeholder for registration logic
-        console.log('Register attempt', { name, email, password });
-        navigate('/');
+        if (password !== passwordConfirmation) {
+            alert("Passwords don't match");
+            return;
+        }
+
+        try {
+            await api.get('/sanctum/csrf-cookie');
+            await api.post('/register', {
+                name,
+                email,
+                password,
+                password_confirmation: passwordConfirmation
+            });
+            // Default role is 'user', redirect to home
+            navigate('/');
+        } catch (error) {
+            console.error('Registration failed', error);
+            alert('Registration failed. Please try again.');
+        }
     };
 
     return (
@@ -68,7 +86,7 @@ export default function Register() {
             </div>
 
             <div>
-                <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500">
+                <Button type="submit" className="w-full bg-brand-mocha hover:bg-brand-mocha/90 dark:bg-brand-cream dark:text-brand-mocha dark:hover:bg-brand-cream/90">
                     Create Account
                 </Button>
             </div>
@@ -76,7 +94,7 @@ export default function Register() {
             <div className="text-center mt-4">
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                     Already have an account?{' '}
-                    <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+                    <Link to="/login" className="font-medium text-brand-mocha hover:text-brand-mocha/80 dark:text-brand-cream dark:hover:text-brand-cream/80">
                         Sign in
                     </Link>
                 </p>

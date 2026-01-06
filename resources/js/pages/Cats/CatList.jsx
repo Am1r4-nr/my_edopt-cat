@@ -18,7 +18,7 @@ export default function CatList() {
     const fetchCats = async () => {
         setLoading(true);
         try {
-            const response = await api.get('/cats', {
+            const response = await api.get('/api/cats', {
                 params: {
                     search: searchTerm,
                     status: statusFilter
@@ -42,7 +42,7 @@ export default function CatList() {
 
     const handleSaveCat = async (catData) => {
         try {
-            await api.post('/cats', catData);
+            await api.post('/api/cats', catData);
             setIsFormOpen(false);
             fetchCats(); // Refresh list
         } catch (error) {

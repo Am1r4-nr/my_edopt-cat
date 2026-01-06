@@ -25,7 +25,7 @@ export default function IncidentMap() {
     useEffect(() => {
         const fetchIncidents = async () => {
             try {
-                const response = await api.get('/incidents');
+                const response = await api.get('/api/incidents');
                 setIncidents(response.data);
             } catch (error) {
                 console.error('Failed to fetch incidents:', error);
