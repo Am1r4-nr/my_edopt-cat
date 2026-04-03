@@ -14,11 +14,15 @@ import {
     Heart,
     DollarSign,
     AlertTriangle,
-    BarChart
+    BarChart,
+    Globe
 } from 'lucide-react';
+
+import { useAuth } from '../contexts/AuthContext';
 
 export default function AdminLayout() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const { user, logout } = useAuth();
     const location = useLocation();
 
     const navigation = [
@@ -30,13 +34,18 @@ export default function AdminLayout() {
         { name: 'Incidents Hub', href: '/admin/incidents-hub', icon: AlertTriangle },
         { name: 'Live Map', href: '/admin/live-map', icon: Calendar },
         { name: 'Finances', href: '/admin/finances', icon: DollarSign },
+        { name: 'Reports', href: '/admin/reports', icon: BarChart },
+        { name: 'Messages', href: '/admin/messages', icon: Mail },
+        { name: 'Calendar', href: '/admin/calendar', icon: Calendar },
         { name: 'Settings', href: '/admin/settings', icon: Settings },
     ];
 
     const isActive = (path) => {
-        return location.pathname === path
-            ? 'bg-brand-cream text-brand-mocha dark:bg-brand-cream/20 dark:text-brand-cream'
-            : 'text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800';
+        // Simple check
+        if (path === '/admin' && location.pathname === '/admin') return 'bg-brand-cream text-brand-mocha dark:bg-brand-cream/20 dark:text-brand-cream';
+        // For sub-routes
+        if (path !== '/admin' && location.pathname.startsWith(path)) return 'bg-brand-cream text-brand-mocha dark:bg-brand-cream/20 dark:text-brand-cream';
+        return 'text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800';
     };
 
     return (
@@ -52,7 +61,7 @@ export default function AdminLayout() {
                 <div className="h-full flex flex-col">
                     {/* Logo */}
                     <div className="px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between">
-                        <Link to="/" className="flex items-center space-x-2">
+                        <Link to="/admin" className="flex items-center space-x-2">
                             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-mocha to-[#8B7E74] dark:from-brand-cream dark:to-[#E5D4A0]">
                                 E-DOPTCAT
                             </span>
@@ -86,13 +95,19 @@ export default function AdminLayout() {
                     <div className="p-4 border-t border-gray-100 dark:border-gray-700">
                         <div className="flex items-center space-x-3">
                             <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                                <span className="font-semibold text-gray-600 dark:text-gray-300">AD</span>
+                                <span className="font-semibold text-gray-600 dark:text-gray-300">
+                                    {user?.name?.charAt(0) || 'A'}
+                                </span>
                             </div>
                             <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-gray-900 dark:text-white truncate">Admin User</p>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">admin@edoptcat.com</p>
+                                <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{user?.name || 'Admin User'}</p>
+                                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{user?.email || 'admin@edoptcat.com'}</p>
                             </div>
-                            <button className="text-gray-400 hover:text-red-500 dark:hover:text-red-400">
+                            <button
+                                onClick={logout}
+                                className="text-gray-400 hover:text-red-500 dark:hover:text-red-400"
+                                title="Logout"
+                            >
                                 <LogOut size={20} />
                             </button>
                         </div>
@@ -114,6 +129,15 @@ export default function AdminLayout() {
 
                         <div className="flex-1 px-4 flex justify-end">
                             <div className="flex items-center space-x-4">
+                                <Link
+                                    to="/"
+                                    target="_blank"
+                                    className="px-3 py-2 bg-brand-mocha/10 text-brand-mocha dark:bg-brand-cream/10 dark:text-brand-cream rounded-full text-sm font-medium hover:bg-brand-mocha/20 transition-colors flex items-center gap-2"
+                                    title="View Public Interface"
+                                >
+                                    <Globe size={18} />
+                                    <span className="hidden sm:inline">View Site</span>
+                                </Link>
                                 <button className="p-2 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 relative">
                                     <Bell size={20} />
                                     <span className="absolute top-2 right-2 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-gray-800"></span>

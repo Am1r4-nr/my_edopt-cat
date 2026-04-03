@@ -38,7 +38,7 @@ export default function AdoptionBoard() {
 
     const fetchAdoptions = async () => {
         try {
-            const response = await api.get('/adoptions');
+            const response = await api.get('/api/adoptions');
             // Mocking Match Scores and Tasks for demo purposes
             const enhancedData = response.data.map(ad => ({
                 ...ad,
@@ -76,7 +76,7 @@ export default function AdoptionBoard() {
         }
 
         try {
-            await api.put(`/adoptions/${updatedAdoption.id}`, {
+            await api.put(`/api/adoptions/${updatedAdoption.id}`, {
                 completed_tasks: updatedAdoption.completedTasks,
                 match_score: updatedAdoption.matchScore,
                 stage: updatedAdoption.stage,
@@ -104,7 +104,7 @@ export default function AdoptionBoard() {
         // The useEffect [searchTerm, adoptions] will trigger and update filteredAdoptions.
 
         try {
-            await api.put(`/adoptions/${adoptionId}`, { stage: newStage });
+            await api.put(`/api/adoptions/${adoptionId}`, { stage: newStage });
         } catch (error) {
             console.error('Failed to update stage:', error);
             fetchAdoptions(); // Revert on failure

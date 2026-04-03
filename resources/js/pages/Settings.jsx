@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/Card';
+import api from '@/lib/api';
 
 import { useTheme } from '@/contexts/ThemeContext';
 
@@ -19,13 +20,24 @@ export default function Settings() {
         { id: 'appearance', label: 'Appearance', icon: Moon },
     ];
 
-    const handleSave = () => {
+    const handleSave = async () => {
         setIsLoading(true);
-        // Mock save
-        setTimeout(() => {
-            setIsLoading(false);
+        try {
+            // Mocking the profile update payload
+            const payload = {
+                firstName: 'Admin',
+                lastName: 'User',
+                email: 'admin@edoptcat.com',
+                bio: 'Passionate about animal welfare.'
+            };
+            await api.post('/api/user/profile', payload);
             alert('Settings saved successfully!');
-        }, 1000);
+        } catch (error) {
+            console.error('Failed to save settings:', error);
+            alert('Failed to save settings.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (

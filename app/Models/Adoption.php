@@ -11,6 +11,13 @@ class Adoption extends Model
 
     protected $fillable = [
         'applicant_name',
+        'email',
+        'phone',
+        'address',
+        'housing_type',
+        'has_pets',
+        'reason',
+        'user_id',
         'cat_id',
         'status',
         'application_date',

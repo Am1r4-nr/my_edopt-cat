@@ -17,7 +17,7 @@ export default function CatDetail() {
 
     const fetchCat = async () => {
         try {
-            const response = await api.get(`/cats/${id}`);
+            const response = await api.get(`/api/cats/${id}`);
             setCat(response.data);
         } catch (error) {
             console.error('Failed to fetch cat details:', error);
@@ -32,7 +32,7 @@ export default function CatDetail() {
 
     const handleUpdateCat = async (catData) => {
         try {
-            await api.put(`/cats/${id}`, catData);
+            await api.put(`/api/cats/${id}`, catData);
             setIsEditFormOpen(false);
             fetchCat(); // Refresh data
         } catch (error) {
@@ -44,7 +44,7 @@ export default function CatDetail() {
     const handleDeleteCat = async () => {
         if (confirm('Are you sure you want to delete this cat? This action cannot be undone.')) {
             try {
-                await api.delete(`/cats/${id}`);
+                await api.delete(`/api/cats/${id}`);
                 navigate('/cats');
             } catch (error) {
                 console.error('Failed to delete cat:', error);
