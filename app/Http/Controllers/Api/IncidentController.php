@@ -4,26 +4,58 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Incident;
+use App\Models\Cat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class IncidentController extends Controller
 {
     public function index()
     {
-        $incidents = Incident::orderBy('reported_at', 'desc')->get();
+        return response()->json(Incident::orderBy('reported_at', 'desc')->get());
+    }
 
-        $data = $incidents->map(function ($incident) {
-            return [
-                'id' => $incident->id,
-                'type' => $incident->type,
-                'location' => [$incident->latitude, $incident->longitude],
-                'severity' => $incident->severity,
-                'description' => $incident->description,
-                'time' => $incident->reported_at, // Format could be adjusted here if needed
-                'status' => $incident->status
-            ];
-        });
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'type' => 'required|string',
+            'description' => 'required|string',
+            'cat_id' => 'nullable|string', // Could be string like CAT-492, we can parse it
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'photo' => 'nullable|image|max:10240'
+        ]);
 
-        return response()->json($data);
+        $photoUrl = null;
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('incidents', 'public');
+            $photoUrl = Storage::url($path);
+        }
+
+        // Try to match cat ID if provided
+        $realCatId = null;
+        if (!empty($validated['cat_id'])) {
+            $parsedId = (int) str_replace(['#CAT-', 'CAT-'], '', $validated['cat_id']);
+            if (Cat::find($parsedId)) {
+                $realCatId = $parsedId;
+            }
+        }
+
+        $incident = Incident::create([
+            'type' => $validated['type'],
+            'description' => $validated['description'],
+            'cat_id' => $realCatId,
+            'reporter_user_id' => auth()->check() ? auth()->id() : null,
+            'latitude' => $validated['latitude'],
+            'longitude' => $validated['longitude'],
+            'photo_url' => $photoUrl,
+            'status' => 'Pending',
+            'severity' => 'Medium'
+        ]);
+
+        return response()->json([
+            'message' => 'Report submitted successfully.',
+            'incident' => $incident
+        ], 201);
     }
 }

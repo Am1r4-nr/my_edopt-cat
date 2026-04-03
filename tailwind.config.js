@@ -16,13 +16,22 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['"Plus Jakarta Sans"', ...defaultTheme.fontFamily.sans],
+                display: ['Outfit', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 brand: {
-                    cream: '#F0DE9E',
-                    mocha: '#72685E',
+                    base: '#FDFBF7',
+                    surface: '#FFFFFF',
+                    dark: '#2D241C',
+                    primary: '#DE7B1F', // Main orange button tint
+                    secondary: '#885025', // Darker brown
+                    input: '#F0ECE4', // Input fields background
+                    accent: '#116b73', // Teal from info cards
                 },
+            },
+            backgroundImage: {
+                'boho-pattern': "url('/images/bg-pattern.png')",
             },
         },
     },

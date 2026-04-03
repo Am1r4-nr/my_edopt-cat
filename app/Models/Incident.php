@@ -10,12 +10,25 @@ class Incident extends Model
     use HasFactory;
 
     protected $fillable = [
+        'cat_id',
+        'reporter_user_id',
         'type',
         'description',
+        'photo_url',
         'severity',
         'latitude',
         'longitude',
         'status',
         'reported_at'
     ];
+
+    public function cat()
+    {
+        return $this->belongsTo(Cat::class);
+    }
+
+    public function reporter()
+    {
+        return $this->belongsTo(User::class, 'reporter_user_id');
+    }
 }

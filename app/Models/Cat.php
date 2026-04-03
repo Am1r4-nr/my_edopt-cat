@@ -20,4 +20,19 @@ class Cat extends Model
         'intake_date',
         'image_url'
     ];
+
+    public function adoptions()
+    {
+        return $this->hasMany(Adoption::class);
+    }
+
+    public function incidents()
+    {
+        return $this->hasMany(Incident::class);
+    }
+
+    public function gpsLocations()
+    {
+        return $this->hasMany(GpsLocation::class);
+    }
 }

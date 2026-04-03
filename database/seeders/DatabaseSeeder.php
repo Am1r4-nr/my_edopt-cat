@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CatSeeder::class,
             AdoptionSeeder::class,
             IncidentSeeder::class,
+            DonationSeeder::class,
         ]);
     }
 }

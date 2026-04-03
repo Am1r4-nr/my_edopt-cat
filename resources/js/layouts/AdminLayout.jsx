@@ -22,15 +22,15 @@ export default function AdminLayout() {
     const location = useLocation();
 
     const navigation = [
-        { name: 'Dashboard', href: '/', icon: LayoutDashboard },
-        { name: 'Cats', href: '/cats', icon: Cat },
-        { name: 'Adoptions', href: '/adoptions', icon: Heart },
-        { name: 'Incidents', href: '/incidents', icon: AlertTriangle },
-        { name: 'Finances', href: '/finances', icon: DollarSign },
-        { name: 'Reports', href: '/reports', icon: BarChart },
-        { name: 'Messages', href: '/messages', icon: Mail },
-        { name: 'Calendar', href: '/calendar', icon: Calendar },
-        { name: 'Settings', href: '/settings', icon: Settings },
+        { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+        { name: 'Cats', href: '/admin/cats', icon: Cat },
+        { name: 'Adoptions', href: '/admin/adoptions', icon: Heart },
+        { name: 'Volunteers', href: '/admin/volunteers', icon: BarChart },
+        { name: 'Events', href: '/admin/events', icon: Calendar },
+        { name: 'Incidents Hub', href: '/admin/incidents-hub', icon: AlertTriangle },
+        { name: 'Live Map', href: '/admin/live-map', icon: Calendar },
+        { name: 'Finances', href: '/admin/finances', icon: DollarSign },
+        { name: 'Settings', href: '/admin/settings', icon: Settings },
     ];
 
     const isActive = (path) => {
