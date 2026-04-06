@@ -20,10 +20,8 @@ import EventManagement from './pages/Admin/EventManagement';
 import IncidentManagement from './pages/Admin/IncidentManagement';
 import GpsLiveMap from './pages/Admin/GpsLiveMap';
 import Dashboard from './pages/Dashboard';
-import Home from './pages/Home'; // Added Home Page
 import PublicCatList from './pages/PublicCatList';
 import About from './pages/About';
-import Donate from './pages/Donate';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
