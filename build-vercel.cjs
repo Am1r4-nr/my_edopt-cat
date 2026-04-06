@@ -23,7 +23,7 @@ const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
 console.log('Manifest keys:', Object.keys(manifest).slice(0, 10));
 
 // Step 3: Find JS and CSS entry points by searching manifest keys
-let cssFile = null;
+let cssFiles = [];
 let jsFile = null;
 
 for (const [key, value] of Object.entries(manifest)) {
@@ -31,20 +31,23 @@ for (const [key, value] of Object.entries(manifest)) {
         jsFile = '/build/' + value.file;
         // Also get CSS files imported by the JS entry
         if (value.css && value.css.length > 0) {
-            cssFile = '/build/' + value.css[0];
+             value.css.forEach(c => cssFiles.push('/build/' + c));
         }
     }
     if (key.includes('resources/css/app') && value.isEntry) {
-        cssFile = '/build/' + value.file;
+        cssFiles.push('/build/' + value.file);
     }
 }
 
+// deduplicate css files
+cssFiles = [...new Set(cssFiles)];
+
 console.log('JS entry:', jsFile);
-console.log('CSS entry:', cssFile);
+console.log('CSS entries:', cssFiles);
 
 // Step 4: Generate static index.html
-const cssTag  = cssFile ? '<link rel="stylesheet" href="' + cssFile + '">' : '';
-const jsTag   = jsFile  ? '<script type="module" src="' + jsFile + '"></script>' : '';
+const cssTag  = cssFiles.map(c => `<link rel="stylesheet" href="${c}">`).join('\n    ');
+const jsTag   = jsFile  ? `<script type="module" src="${jsFile}"></script>` : '';
 
 const html = `<!DOCTYPE html>
 <html lang="en">
