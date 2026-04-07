@@ -19,7 +19,7 @@ export default function Home() {
                     </h1>
                     
                     <p className="text-gray-500 text-lg max-w-md leading-relaxed">
-                        Welcome to e-Doptcat, a boutique rescue sanctuary managed by the Animal Husbandry Club (AHC). We blend compassionate care with a high-end adoption experience.
+                        Welcome to e-Doptcat, a boutique rescue sanctuary managed by the Abu Hurairah Club. We blend compassionate care with a high-end adoption experience.
                     </p>
                     
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -48,7 +48,7 @@ export default function Home() {
                     <div className="col-span-1 md:col-span-2 bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col justify-between">
                         <div>
                             <h3 className="text-4xl font-display font-bold text-brand-primary mb-2">1,240+</h3>
-                            <p className="text-sm text-gray-500 max-w-xs">Lives transformed through AHC's dedicated student initiative.</p>
+                            <p className="text-sm text-gray-500 max-w-xs">Lives transformed through Abu Hurairah Club's dedicated student initiative.</p>
                         </div>
                         <div className="flex items-center -space-x-3 mt-8">
                             <div className="w-10 h-10 rounded-full bg-teal-500 border-2 border-white shadow-sm flex items-center justify-center text-white text-xs">RM</div>
@@ -163,7 +163,7 @@ export default function Home() {
                     </div>
                     
                     <div className="relative z-10 max-w-xl">
-                        <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight mb-6">Join the IIUM AHC Mission.</h2>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight mb-6">Join the IIUM Abu Hurairah Club Mission.</h2>
                         <p className="text-lg text-orange-100 mb-10 opacity-90 max-w-md leading-relaxed">
                             Your donations directly fund medical treatments, premium nutrition, and cozy shelters for cats waiting for their forever homes.
                         </p>

@@ -11,7 +11,7 @@ export default function About() {
                         About E-DOPTCAT
                     </h1>
                     <p className="mt-6 text-xl max-w-3xl mx-auto text-brand-cream/80">
-                        We are dedicated to connecting homeless cats with loving families around IIUM Gombak. An initiative by the Abu Hurairah Club (AHC) to ensure every cat finds their purrfect match.
+                        We are dedicated to connecting homeless cats with loving families around IIUM Gombak. An initiative by the Abu Hurairah Club to ensure every cat finds their purrfect match.
                     </p>
                 </div>
                 <div className="absolute inset-x-0 -bottom-1 h-32 bg-gradient-to-t from-brand-cream/30 dark:from-gray-900 to-transparent pointer-events-none" />
@@ -26,7 +26,7 @@ export default function About() {
                             At E-DOPTCAT, we believe that every cat deserves a safe, loving home. Our platform was born from the need to modernize the animal shelter experience, making it easier for shelters to manage their residents and for potential adopters to find their new best friend.
                         </p>
                         <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                            We work closely with the Abu Hurairah Club (AHC) at IIUM Gombak to help stray cats find care and permanent homes. Our AI-assisted matching system ensures that adoptions are successful and sustainable.
+                            We work closely with the Abu Hurairah Club at IIUM Gombak to help stray cats find care and permanent homes. Our AI-assisted matching system ensures that adoptions are successful and sustainable.
                         </p>
                     </div>
                     <div className="relative">
