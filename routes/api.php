@@ -33,6 +33,7 @@ Route::post('/cats', [CatController::class, 'store']);
 Route::get('/cats/{id}', [CatController::class, 'show']);
 Route::put('/cats/{id}', [CatController::class, 'update']);
 Route::delete('/cats/{id}', [CatController::class, 'destroy']);
+Route::post('/cats/{id}/generate-temperament', [CatController::class, 'generateTemperamentScore']);
 Route::get('/adoptions', [AdoptionController::class, 'index']);
 Route::post('/adoptions', [AdoptionController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/user/adoptions', [AdoptionController::class, 'getUserAdoptions']);

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function AboutUs() {
     return (
         <div className="w-full min-h-screen bg-brand-base font-sans text-brand-dark pb-24">
-            
+
             {/* Section 1: Hero */}
             <div className="max-w-6xl mx-auto px-6 pt-32 pb-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -16,12 +16,12 @@ export default function AboutUs() {
                             About e-Doptcat
                         </h1>
                         <p className="text-gray-600 text-lg md:text-xl font-medium leading-relaxed mb-6">
-                            A real-time cat adoption and rescue management system by the Abu Hurairah Club, IIUM.
+                            A real-time cat adoption and rescue management system by the Abu Hurairah Club (AHC), IIUM.
                         </p>
                         <div className="bg-[#fcf9f5] border border-[#f5ead8] p-6 rounded-3xl rounded-tl-none shadow-sm relative">
                             <div className="absolute top-0 left-0 w-1 h-full bg-[#b35e19] rounded-l-3xl"></div>
                             <p className="text-sm text-gray-500 leading-relaxed italic">
-                                "Abu Hurairah Club is a student-run organisation at IIUM dedicated to rescuing, caring for, and rehoming stray and abandoned cats on campus."
+                                "AHC is a student-run organisation at IIUM dedicated to rescuing, caring for, and rehoming stray and abandoned cats on campus."
                             </p>
                         </div>
                     </div>
@@ -41,7 +41,7 @@ export default function AboutUs() {
                 <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-dark mb-8">Our Story</h2>
                 <div className="space-y-6 text-sm md:text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">
                     <p>
-                        For years, the Abu Hurairah Club worked tirelessly to manage campus cat welfare through fragmented channels. Our volunteers navigated manual processes, tracking rescues via social media DMs, and coordinated without a central system for urgent or unique needs. Records of adoptions and lists of ill cats got lost amidst the sheer volume of our thriving campus feline friends.
+                        For years, the Abu Hurairah Club (AHC) worked tirelessly to manage campus cat welfare through fragmented channels. Our volunteers navigated manual processes, tracking rescues via social media DMs, and coordinated without a central system for urgent or unique needs. Records of adoptions and lists of ill cats got lost amidst the sheer volume of our thriving campus feline friends.
                     </p>
                     <p>
                         Recognizing this challenge, the vision for <strong>e-Doptcat</strong> was born. We needed more than just a website; we needed an entire digital sanctuary. By moving adoptions, incident tracking, and volunteer management online, we empowered our community to respond faster, track health history accurately, and connect hopeful adopters with their perfect feline matches seamlessly.
@@ -121,7 +121,7 @@ export default function AboutUs() {
             {/* Section 6: Reach Us */}
             <div className="max-w-6xl mx-auto px-6 py-20">
                 <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-dark mb-10">Reach Us</h2>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div className="space-y-10">
                         <div className="flex gap-4 items-start">
@@ -131,7 +131,7 @@ export default function AboutUs() {
                                 <p className="text-xs text-gray-500">ahc.iium@student.iium.edu.my</p>
                             </div>
                         </div>
-                        
+
                         <div className="flex gap-4 items-start">
                             <div className="w-10 h-10 rounded-full bg-[#fcf9f5] border border-[#f5ead8] flex items-center justify-center text-[#b35e19] text-xl shrink-0">📍</div>
                             <div>

@@ -51,7 +51,7 @@ const MOCK_EVENTS = [
         description: 'Free health checkups and vaccinations for stray and community cats. Veterinary professionals will be available for consultations.',
         date: 'Saturday, January 25, 2025',
         time: '08:00 AM - 02:00 PM',
-        location: 'Abu Hurairah Club Medical Station',
+        location: 'AHC Medical Station',
         registered: 15,
         capacity: 30
     },
@@ -93,7 +93,7 @@ const MOCK_EVENTS = [
         description: 'Hands-on training for volunteers on humane cat trapping, the TNR process, and colony management techniques.',
         date: 'Saturday, February 15, 2025',
         time: '09:00 AM - 03:00 PM',
-        location: 'Abu Hurairah Club Training Center',
+        location: 'AHC Training Center',
         registered: 18,
         capacity: 25
     }
@@ -125,7 +125,7 @@ export default function Events() {
                         Events & Activities
                     </h1>
                     <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                        Join Abu Hurairah Club in our mission to support SDG 15 (Life on Land) through community engagement, education, and compassionate care for cats.
+                        Join Abu Hurairah Club (AHC) in our mission to support SDG 15 (Life on Land) through community engagement, education, and compassionate care for cats.
                     </p>
                 </div>
 

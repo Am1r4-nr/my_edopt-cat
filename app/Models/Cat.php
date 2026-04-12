@@ -18,7 +18,11 @@ class Cat extends Model
         'location',
         'risk_score',
         'intake_date',
-        'image_url'
+        'image_url',
+        'medical_notes',
+        'behavior_notes',
+        'temperament_score',
+        'ai_description'
     ];
 
     public function adoptions()

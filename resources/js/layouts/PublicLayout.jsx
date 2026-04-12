@@ -68,7 +68,7 @@ export default function PublicLayout() {
                     </div>
                 </div>
                 <div className="mt-16 pt-8 text-center text-xs text-gray-400">
-                    &copy; 2026 e-Doptcat Abu Hurairah Club. All rights reserved.
+                    &copy; 2026 e-Doptcat AHC. All rights reserved.
                 </div>
             </footer>
         </div>
